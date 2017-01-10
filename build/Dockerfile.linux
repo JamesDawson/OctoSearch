@@ -1,0 +1,10 @@
+FROM trevorsullivan/powershell
+
+RUN mkdir /app
+COPY build /app/
+
+VOLUME /app/src
+VOLUME /output
+
+WORKDIR /app/build
+CMD ["build.ps1"]
