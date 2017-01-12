@@ -1,10 +1,12 @@
 FROM trevorsullivan/powershell
 
-RUN mkdir /app
-COPY build /app/
+RUN sudo apt install nuget && \
+    mkdir -p /app/build
+COPY . /app/build/
+RUN rm /app/build/Dockerfile*
 
 VOLUME /app/src
 VOLUME /output
 
 WORKDIR /app/build
-CMD ["build.ps1"]
+CMD ["powershell", "-File", "build.ps1"]
